@@ -9,17 +9,17 @@ repos:
         stages: [commit]
         pass_filenames: false
 
-      - id: requirements
-        name: add requirements file
-        entry: make requirements
-        language: script
-        files: ^pyproject\.toml$
-        stages: [commit]
-
       - id: lock
         name: update lockfile
         entry: make lock
         language: script
         files: ^pyproject\.toml$
         stages: [ commit ]
+
+      - id: requirements
+        name: add requirements file
+        entry: make requirements
+        language: script
+        files: ^pyproject\.toml$
+        stages: [commit]
 
