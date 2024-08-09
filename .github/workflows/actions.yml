@@ -1,0 +1,31 @@
+name: Run Python Script
+
+# Control when the action will run
+on:
+  schedule:
+    - cron: '*/5 * * * *'  # Every 5 minutes
+  workflow_dispatch:        # Allows manual triggering of the workflow
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Install Poetry
+      run: |
+        curl -sSL https://install.python-poetry.org | python3 -
+        echo "::add-path::${HOME}/.local/bin"
+
+    - name: Install dependencies
+      run: poetry install
+
+    - name: Run Python script
+      run: poetry run python train.py  # Replace with your actual script name
