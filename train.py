@@ -1,18 +1,18 @@
+import logging
 from datetime import datetime
 
 import yfinance as yf
 from statsmodels.tsa.arima.model import ARIMA
-import logging
 
 
 def main():
 
     # Step 1: Data Collection
-    ticker = 'AAPL'
-    data = yf.download(ticker, start='2021-01-01', end=datetime.now())
+    ticker = "AAPL"
+    data = yf.download(ticker, start="2021-01-01", end=datetime.now())
 
     # Step 2: Data Preprocessing
-    data = data['Close'].dropna()
+    data = data["Close"].dropna()
 
     # Step 3: Model Selection
     p = 5  # lag order
@@ -26,10 +26,11 @@ def main():
     # Step 5: Forecasting
     forecast = model_fit.forecast(steps=7)
 
-    logging.info(f'Forecast for the next 7 days: {forecast}')
+    # Log scores
+    logging.basicConfig(level=logging.INFO)
+    logger = logging.getLogger(__name__)
+    logger.info(f"Scores: {forecast}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
-
-
