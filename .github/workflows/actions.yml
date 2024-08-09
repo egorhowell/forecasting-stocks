@@ -1,28 +1,26 @@
-name: Run Python Script
+name: run repo
 
-# Control when the action will run
 on:
   schedule:
-    - cron: '*/5 * * * *'  # Every 5 minutes
-  workflow_dispatch:        # Allows manual triggering of the workflow
+    - cron: "*/5 * * * *" # Run every 5 minutes
 
 jobs:
-  run-script:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.11'
+      - name: checkout repo content
+        uses: actions/checkout@v4 # Checkout the repo content to GitHub runner
 
-    - name: install python packages
-      run:
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
+      - name: setup python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
 
-    - name: Run Python script
-      run: python train.py
+      - name: install python packages
+        run:
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: execute py script
+        run: python train.py
