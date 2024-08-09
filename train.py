@@ -3,7 +3,6 @@ from datetime import datetime
 
 import yfinance as yf
 from statsmodels.tsa.arima.model import ARIMA
-import torch
 
 
 def main():
