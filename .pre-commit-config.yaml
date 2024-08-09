@@ -11,14 +11,14 @@ repos:
 
       - id: lock
         name: update lockfile
-        entry: make lock
+        entry: .hooks/update_lock.sh
         language: script
         files: ^pyproject\.toml$
-        stages: [ commit ]
+        stages: [commit]
 
       - id: requirements
         name: add requirements file
-        entry: make requirements
+        entry: .hooks/requirements.sh
         language: script
         files: ^pyproject\.toml$
         stages: [commit]
