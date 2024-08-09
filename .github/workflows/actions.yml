@@ -2,13 +2,13 @@ name: run repo
 
 on:
   schedule:
-    - cron: "*/5 * * * *" # Run every 5 minutes
+    - cron: "*/1 * * * *" # Run every 5 minutes
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    
     steps:
-
     - name: checkout repo content
       uses: actions/checkout@v4 # Checkout the repo content to GitHub runner
 
