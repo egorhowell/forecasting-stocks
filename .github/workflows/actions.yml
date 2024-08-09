@@ -1,8 +1,9 @@
-name: run repo
+name: run forecasts
 
 on:
   schedule:
     - cron: "*/1 * * * *" # Run every 5 minutes
+  workflow_dispatch:
 
 jobs:
   build:
